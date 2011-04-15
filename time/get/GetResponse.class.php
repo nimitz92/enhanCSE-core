@@ -1,0 +1,14 @@
+<?php 
+require_once(SBINTERFACES);
+
+class GetResponse implements ResponseService {
+	
+	// ResponseService interface
+	public function processResponse($model){
+		$view = "<h1>Time :  ".$model['current-time']."</h1>";
+		$view .= "<h2>".$model['current-time-formatted']."</h2>";
+		return $view;
+	}
+}
+
+?>
