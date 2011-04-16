@@ -1,10 +1,10 @@
 <?php 
 require_once(SBINTERFACES);
 
-require_once(dirname(__FILE__).'/AuthenticateRequest.class.php');
-require_once(dirname(__FILE__).'/AuthenticateContext.class.php');
-require_once(dirname(__FILE__).'/AuthenticateTransform.class.php');
-require_once(dirname(__FILE__).'/AuthenticateResponse.class.php');
+require_once('AuthenticateRequest.class.php');
+require_once('AuthenticateContext.class.php');
+require_once('AuthenticateTransform.class.php');
+require_once('AuthenticateResponse.class.php');
 
 class Authenticate implements Operation {
 

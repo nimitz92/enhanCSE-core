@@ -2,8 +2,8 @@
 require_once(SBINTERFACES);
 require_once(SBCOMLOADER);
 
-require_once(dirname(__FILE__).'/GetTransform.class.php');
-require_once(dirname(__FILE__).'/GetResponse.class.php');
+require_once('GetTransform.class.php');
+require_once('GetResponse.class.php');
 
 class Get implements Operation {
 	protected 
