@@ -1,5 +1,5 @@
 <?php 
-require_once('../../../../services/init.php');
+require_once('../../init.php');
 require_once(SBKERNEL);
 require_once(SBCOMLOADER);
 
