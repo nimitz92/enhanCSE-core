@@ -1,7 +1,7 @@
 <?php 
 
 // enhancse-core directory
-		define('ECROOT', $_SERVER['DOCUMENT_ROOT'] . '/services/enhancse-core/');
+		define('ECROOT', dirname(__FILE__).'/' );
 
 // initialize snowblozm
 		require_once(ECROOT . '../snowblozm/init.php');
