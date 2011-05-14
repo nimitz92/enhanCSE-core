@@ -1,7 +1,7 @@
 <?php 
 require_once(SBINTERFACES);
 
-class AuthenticateRequest implements RequestService {
+class LoginRequest implements RequestService {
 	
 	// RequestService interface
 	public function processRequest(){

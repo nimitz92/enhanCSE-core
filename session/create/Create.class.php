@@ -2,11 +2,11 @@
 require_once(SBINTERFACES);
 require_once(SBCOMLOADER);
 
-require_once('AuthenticateRequest.class.php');
-require_once('AuthenticateContext.class.php');
-require_once('AuthenticateResponse.class.php');
+require_once('CreateRequest.class.php');
+require_once('CreateContext.class.php');
+require_once('CreateResponse.class.php');
 
-class Authenticate implements Operation {
+class Create implements Operation {
 	protected 
 		// adapter
 		$adapter;
@@ -19,12 +19,12 @@ class Authenticate implements Operation {
 
 	// Operation interface
 	public function getRequestService(){
-		return new AuthenticateRequest();
+		return new CreateRequest();
 	}
 	
 	// Operation interface
 	public function getContextService(){
-		return new AuthenticateContext();
+		return new CreateContext();
 	}
 	
 	// Operation interface
@@ -34,7 +34,7 @@ class Authenticate implements Operation {
 	
 	// Operation interface
 	public function getResponseService(){
-		return new AuthenticateResponse();
+		return new CreateResponse();
 	}
 }
 

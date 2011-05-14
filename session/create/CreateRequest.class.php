@@ -1,15 +1,14 @@
 <?php 
 require_once(SBINTERFACES);
 
-class AuthenticateRequest implements RequestService {
+class CreateRequest implements RequestService {
 	
 	// RequestService interface
 	public function processRequest(){
 	
 		// TODO check for null and throw exceptions and initialize $model['conn'] with db connection
 		$model = array(
-			'username' => $_GET['username'],
-			'password' => $_GET['password'],
+			'uid' => $_GET['uid'],
 			'db' => $_GET['db']
 		);
 		

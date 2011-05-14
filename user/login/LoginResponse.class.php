@@ -1,7 +1,7 @@
 <?php 
 require_once(SBINTERFACES);
 
-class AuthenticateResponse implements ResponseService {
+class LoginResponse implements ResponseService {
 	
 	// ResponseService interface
 	public function processResponse($model){
