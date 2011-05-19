@@ -52,7 +52,7 @@ MSG;
 		$headers .= "\r\nReply-To: $from";
 		$headers .= "\r\nX-Mailer: PHP/".phpversion();
 
-		echo Mail::send($email, "[$application] Account Registration", $msg, $headers);
+		Mail::send($email, "[$application] Account Registration", $msg, $headers);
 		
 		$model['valid'] = true;
 		return $model;

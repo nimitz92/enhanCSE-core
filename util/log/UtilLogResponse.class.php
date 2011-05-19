@@ -1,7 +1,8 @@
 <?php 
+
 require_once(SBINTERFACES);
 
-class UtilMailResponse implements ResponseService {
+class UtilLogResponse implements ResponseService {
 	
 	// ResponseService interface
 	public function processResponse($model){
