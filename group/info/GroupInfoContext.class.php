@@ -8,7 +8,7 @@ class GroupInfoContext implements ContextService {
 		$conn = $model['conn'];
 		$gid = $model['gid'];
 		
-		$query = "select g.gname, c.ctname, g.level from groups g, categories c where g.ctid=c.ctid and g.gid=$gid ;";
+		$query = "select gname, level from groups where gid=$gid ;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){

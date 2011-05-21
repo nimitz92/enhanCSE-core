@@ -4,7 +4,7 @@ require_once(SBKERNEL);
 require_once(SBCOMLOADER);
 
 $cl = new ComponentLoader();
-$op = $cl->load("category.get", ECROOT);
+$op = $cl->load("remark.create", ECROOT);
 
 $kernel = new ServiceKernel();
 $kernel->start($op);

@@ -1,14 +1,15 @@
 <?php 
 require_once(SBINTERFACES);
 
-class GroupClearRequest implements RequestService {
+class RemarkCreateRequest implements RequestService {
 	
 	// RequestService interface
 	public function processRequest(){
 	
 		// TODO check for null and throw exceptions and initialize $model['conn'] with db connection
 		$model = array(
-			'ctid' => $_POST['ctid']
+			'comment' => $_POST['ccomment'],
+			'rating' => $_POST['rating']
 		);
 		
 		return $model;

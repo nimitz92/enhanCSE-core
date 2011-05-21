@@ -1,14 +1,14 @@
 <?php 
 require_once(SBINTERFACES);
 
-class CategoryGetContext implements ContextService {
+class RemarkDeleteContext implements ContextService {
 
 	// ContextService interface
 	public function getContext($model){
 		$conn = $model['conn'];
-		$ctname = $model['ctname'];
+		$rkid = $model['rkid'];
 		
-		$query = "select ctid from categories where ctname=$ctname;";
+		$query = "delete from remarks where rkid=$rkid;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
@@ -18,8 +18,6 @@ class CategoryGetContext implements ContextService {
 		}
 		
 		$model['valid'] = true;
-		$model['ctid'] = $result[0][0];
-		
 		return $model;
 	}
 	

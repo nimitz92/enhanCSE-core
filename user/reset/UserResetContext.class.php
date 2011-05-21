@@ -38,7 +38,13 @@ MSG;
 		$headers .= "\r\nReply-To: $from";
 		$headers .= "\r\nX-Mailer: PHP/".phpversion();
 
-		Mail::send($email, "[$application] Account Reset", $msg, $headers);
+		$sent = Mail::send($email, "[$application] Account Reset", $msg, $headers);
+		
+		if($sent === false){
+			$model['valid'] = false;
+			$model['msg'] = 'Error in Sending Mail';
+			return $model;
+		}
 		
 		$model['valid'] = true;
 		return $model;

@@ -1,7 +1,7 @@
 <?php 
 require_once(SBINTERFACES);
 
-class CategoryCreateResponse implements ResponseService {
+class RemarkDeleteResponse implements ResponseService {
 	
 	// ResponseService interface
 	public function processResponse($model){

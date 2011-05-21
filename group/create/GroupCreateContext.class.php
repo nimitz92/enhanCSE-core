@@ -8,9 +8,8 @@ class GroupCreateContext implements ContextService {
 		$conn = $model['conn'];
 		$gname = $conn->escape($model['gname']);
 		$level = $model['level'];
-		$ctid = $model['ctid'];
 		
-		$query = "select gid from groups where gname='$gname' and ctid=$ctid;";
+		/*$query = "select gid from groups where gname='$gname'";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
@@ -23,9 +22,9 @@ class GroupCreateContext implements ContextService {
 			$model['valid'] = false;
 			$model['msg'] = 'Groupname for category already registered';
 			return $model;
-		}
+		}*/
 		
-		$result = $conn->getResult("insert into groups (gname, ctid, level) values ('$gname', $ctid, $level);", true);
+		$result = $conn->getResult("insert into groups (gname, level) values ('$gname', $level);", true);
 		
 		if($result === false){
 			$model['valid'] = false;
@@ -33,7 +32,10 @@ class GroupCreateContext implements ContextService {
 			return $model;
 		}
 		
+		$gid = $conn->getAutoId();
+		
 		$model['valid'] = true;
+		$model['gid'] = $gid;
 		return $model;
 	}
 	

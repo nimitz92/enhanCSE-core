@@ -2,11 +2,11 @@
 require_once(SBINTERFACES);
 require_once(SBCOMLOADER);
 
-require_once('GroupClearRequest.class.php');
-require_once('GroupClearContext.class.php');
-require_once('GroupClearResponse.class.php');
+require_once('RemarkCreateRequest.class.php');
+require_once('RemarkCreateContext.class.php');
+require_once('RemarkCreateResponse.class.php');
 
-class GroupClear implements Operation {
+class RemarkCreate implements Operation {
 	protected 
 		// adapter
 		$adapter;
@@ -19,12 +19,12 @@ class GroupClear implements Operation {
 
 	// Operation interface
 	public function getRequestService(){
-		return new GroupClearRequest();
+		return new RemarkCreateRequest();
 	}
 	
 	// Operation interface
 	public function getContextService(){
-		return new GroupClearContext();
+		return new RemarkCreateContext();
 	}
 	
 	// Operation interface
@@ -34,7 +34,7 @@ class GroupClear implements Operation {
 	
 	// Operation interface
 	public function getResponseService(){
-		return new GroupClearResponse();
+		return new RemarkCreateResponse();
 	}
 }
 

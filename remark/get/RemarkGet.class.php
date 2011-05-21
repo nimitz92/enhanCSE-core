@@ -2,11 +2,11 @@
 require_once(SBINTERFACES);
 require_once(SBCOMLOADER);
 
-require_once('CategoryDeleteRequest.class.php');
-require_once('CategoryDeleteContext.class.php');
-require_once('CategoryDeleteResponse.class.php');
+require_once('RemarkGetRequest.class.php');
+require_once('RemarkGetContext.class.php');
+require_once('RemarkGetResponse.class.php');
 
-class CategoryDelete implements Operation {
+class RemarkGet implements Operation {
 	protected 
 		// adapter
 		$adapter;
@@ -19,12 +19,12 @@ class CategoryDelete implements Operation {
 
 	// Operation interface
 	public function getRequestService(){
-		return new CategoryDeleteRequest();
+		return new RemarkGetRequest();
 	}
 	
 	// Operation interface
 	public function getContextService(){
-		return new CategoryDeleteContext();
+		return new RemarkGetContext();
 	}
 	
 	// Operation interface
@@ -34,7 +34,7 @@ class CategoryDelete implements Operation {
 	
 	// Operation interface
 	public function getResponseService(){
-		return new CategoryDeleteResponse();
+		return new RemarkGetResponse();
 	}
 }
 
