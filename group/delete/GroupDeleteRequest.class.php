@@ -11,6 +11,7 @@ class GroupDeleteRequest implements RequestService {
 			'gid' => $_POST['gid']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

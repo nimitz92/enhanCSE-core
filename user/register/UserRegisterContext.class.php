@@ -1,6 +1,7 @@
 <?php 
 require_once(SBINTERFACES);
 require_once(SBROOT. 'lib/util/Random.class.php');
+require_once(SBROOT. 'lib/util/Mail.class.php');
 
 class UserRegisterContext implements ContextService {
 
@@ -9,8 +10,8 @@ class UserRegisterContext implements ContextService {
 		$conn = $model['conn'];
 		$username = $conn->escape($model['username']);
 		$email = $conn->escape($model['email']);
-		$application = $model['application'];
-		$from = $model['from'];
+		$subject = $model['subject'];
+		$message = $model['message'];
 		
 		$query = "select uid from users where (username='$username' or email='$email');";
 		$result = $conn->getResult($query);
@@ -37,24 +38,10 @@ class UserRegisterContext implements ContextService {
 		
 		$uid = $conn->getAutoId();
 		
-		$msg = <<<MSG
-Hi,
-	Your account at $application has been created successfully.
-	
-	Your Username : $username
-	New password : $password
-	
-	Thank you for using our services.
-	
-Regards,
-Team $application
-MSG;
-
-		$headers = "From: $from";
-		$headers .= "\r\nReply-To: $from";
-		$headers .= "\r\nX-Mailer: PHP/".phpversion();
-
-		$sent = Mail::send($email, "[$application] Account Registration", $msg, $headers);
+		$message = str_replace('{username}', $username, $message);
+		$message = str_replace('{password}', $password, $message);
+		
+		$sent = Mail::send($email, $subject, $message);
 		
 		if($sent === false){
 			$model['valid'] = false;

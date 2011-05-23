@@ -12,6 +12,7 @@ class UserDeleteRequest implements RequestService {
 			'db' => $_GET['db']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

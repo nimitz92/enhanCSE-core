@@ -12,6 +12,7 @@ class RemarkCreateRequest implements RequestService {
 			'rating' => $_POST['rating']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

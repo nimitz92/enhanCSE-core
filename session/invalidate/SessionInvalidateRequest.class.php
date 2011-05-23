@@ -11,6 +11,7 @@ class SessionInvalidateRequest implements RequestService {
 			'sessionid' => $_GET['sessionid']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

@@ -13,6 +13,7 @@ class GroupCreateRequest implements RequestService {
 			'ctid' => $_POST['ctid']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

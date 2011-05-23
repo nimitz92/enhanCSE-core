@@ -11,6 +11,7 @@ class RemarkGetRequest implements RequestService {
 			'rkid' => $_POST['rkid']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

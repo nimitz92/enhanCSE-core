@@ -1,14 +1,14 @@
 <?php 
 require_once(SBINTERFACES);
 
-class GroupDeleteContext implements ContextService {
+class GroupParentsContext implements ContextService {
 
 	// ContextService interface
 	public function getContext($model){
 		$conn = $model['conn'];
-		$gid = $model['gid'];
+		$member = $model['member'];
 		
-		$query = "delete from groups where gid=$gid;";
+		$query = "select gid from members where member=$member;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
@@ -17,15 +17,9 @@ class GroupDeleteContext implements ContextService {
 			return $model;
 		}
 		
-		$result = $conn->getResult("delete from members where gid=$gid;", true);
-		
-		if($result === false){
-			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
-			return $model;
-		}
-		
 		$model['valid'] = true;
+		$model['parents'] = $result;
+		
 		return $model;
 	}
 	

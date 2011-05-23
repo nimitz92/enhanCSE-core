@@ -12,6 +12,7 @@ class GroupRemoveRequest implements RequestService {
 			'member' => $_POST['member']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

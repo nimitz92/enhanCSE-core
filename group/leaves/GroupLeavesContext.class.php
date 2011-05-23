@@ -35,7 +35,7 @@ class GroupLeavesContext implements ContextService {
 		}
 		
 		$model['valid'] = true;
-		$model['members'] = $result;
+		$model['leaves'] = $result;
 		
 		return $model;
 	}

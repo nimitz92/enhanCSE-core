@@ -13,6 +13,7 @@ class SessionInvalidateContext implements ContextService {
 		
 		if($result === false){
 			$model['valid'] = false;
+			$model['msg'] = 'Error in Database';
 			return $model;
 		}
 		

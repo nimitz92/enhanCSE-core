@@ -6,9 +6,6 @@ class UtilMailContext implements ContextService {
 
 	// ContextService interface
 	public function getContext($model){
-		if($model['error'])
-			return $model;
-		
 		$to = $model['to'];
 		$from = $model['from'];
 		$sub = $model['sub'];

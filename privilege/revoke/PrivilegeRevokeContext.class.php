@@ -1,23 +1,17 @@
 <?php 
 require_once(SBINTERFACES);
 
-class GroupDeleteContext implements ContextService {
+class PrivilegeRevokeContext implements ContextService {
 
 	// ContextService interface
 	public function getContext($model){
 		$conn = $model['conn'];
-		$gid = $model['gid'];
-		
-		$query = "delete from groups where gid=$gid;";
+		$ruid = $model['ruid'];
+		$type = $model['type']);
+
+		// check if the username and password match
+		$query = "delete from previleges where type=$type and uid=$ruid;";
 		$result = $conn->getResult($query);
-		
-		if($result === false){
-			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
-			return $model;
-		}
-		
-		$result = $conn->getResult("delete from members where gid=$gid;", true);
 		
 		if($result === false){
 			$model['valid'] = false;

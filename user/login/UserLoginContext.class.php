@@ -2,7 +2,6 @@
 require_once(SBINTERFACES);
 require_once(SBKERNEL);
 require_once(SBCOMLOADER);
-require_once(SBMYSQL);
 
 class UserLoginContext implements ContextService {
 

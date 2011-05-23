@@ -10,9 +10,10 @@ class UserAuthenticateRequest implements RequestService {
 		$model = array(
 			'username' => $_GET['username'],
 			'password' => $_GET['password'],
-			'db' => $_GET['db']
+			'db' => $_GET['db'],
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

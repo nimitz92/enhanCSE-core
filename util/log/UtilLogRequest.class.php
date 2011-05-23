@@ -7,12 +7,12 @@ class UtilLogRequest implements RequestService {
 	public function processRequest(){
 	
 		if(!isset($_POST['address']) || !isset($_POST['message'])){
-			$model['error'] = true;
-			$model['errmsg'] = "Invalid Request";
+			$model['valid'] = false;
+			$model['msg'] = "Invalid Request";
 			return $model;
 		}
 		
-		$model['error'] = false;
+		$model['valid'] = true;
 		$model['address'] = $_POST['address'];
 		$model['message'] = $_POST['message'];
 		

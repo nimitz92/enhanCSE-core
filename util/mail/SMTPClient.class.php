@@ -1,6 +1,7 @@
 <?php 
 
 	class SMTPClient {
+		protected $SmtpServer, $PortSMTP, $SmtpUser, $SmtpPass, $from, $to, $subject, $body;
 
 		public function __construct ($SmtpUser, $SmtpPass, $from, $to, $subject, $body){
 			require_once('SMTPConfig.php');
@@ -14,7 +15,6 @@
 			$this->body = $body;
 		}
 
-		
 		public function SendMail (){
 			if ($SMTPIN = fsockopen ($this->SmtpServer, $this->PortSMTP)) {
 				$talk["http"] = "Http_Host ".$_SERVER['HTTP_HOST'];
@@ -35,14 +35,17 @@
 				fputs ($SMTPIN, "MAIL FROM: <".$this->from.">\r\n");  
 				$talk["From"] = fgets ( $SMTPIN, 1024 );  
 				
-				fputs ($SMTPIN, "RCPT TO: <".$this->to.">\r\n");  
-				$talk["To"] = fgets ($SMTPIN, 1024); 
+				$rcpts = split(',', $this->to);
+				foreach($rcpts as $rcpt){
+					fputs ($SMTPIN, "RCPT TO: <".$rcpt.">\r\n");  
+					$talk["To ".$rcpt] = fgets ($SMTPIN, 1024); 
+				}
 				   
 				fputs($SMTPIN, "DATA\r\n");
 				$talk["data"]=fgets( $SMTPIN,1024 );
 				   
 					
-				fputs($SMTPIN, "To: <".$this->to.">\r\nFrom: <".$this->from.">\r\nSubject:".$this->subject."\r\n\r\n\r\n".$this->body."\r\n.\r\n");
+				fputs($SMTPIN, "To: ".$this->to."\r\nFrom: ".$this->from."\r\nSubject:".$this->subject."\r\n\r\n\r\n".$this->body."\r\n.\r\n");
 				$talk["send"]=fgets($SMTPIN, 1024);
 				   
 				//CLOSE CONNECTION AND EXIT ... 

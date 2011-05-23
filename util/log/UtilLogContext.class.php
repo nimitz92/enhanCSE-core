@@ -6,9 +6,6 @@ class UtilLogContext implements ContextService {
 
 	// ContextService interface
 	public function getContext($model){
-		if(isset($model['error']) && $model['error'])
-			return $model;
-		
 		$conn = $model['conn'];
 		$address = $conn->escape($model['address']);
 		$message = $conn->escape($model['message']);
@@ -17,11 +14,12 @@ class UtilLogContext implements ContextService {
 		$result = $conn->getResult("insert into logs (message, address, time) values ('$message', '$address', $ts);", true);
 		
 		if($result === false){
-			$model['error'] = true;
+			$model['valid'] = false;
+			$model['msg'] = 'Error in Database';
 			return $model;
 		}
 		
-		$model['error'] = false;
+		$model['valid'] = true;
 		return $model;
 	}
 	

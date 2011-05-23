@@ -12,6 +12,7 @@ class GroupAddRequest implements RequestService {
 			'member' => $_POST['member']
 		);
 		
+		$model['valid'] = true;
 		return $model;
 	}
 }

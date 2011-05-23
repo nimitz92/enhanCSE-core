@@ -7,12 +7,12 @@ class UtilMailRequest implements RequestService {
 	public function processRequest(){
 	
 		if(!isset($_POST['to']) || !isset($_POST['from']) || !isset($_POST['sub']) || !isset($_POST['msg']) || !isset($_POST['smtpuser']) || !isset($_POST['smtppass'])){
-			$model['error'] = true;
-			$model['errmsg'] = "Invalid Request";
+			$model['valid'] = false;
+			$model['msg'] = "Invalid Request";
 			return $model;
 		}
 		
-		$model['error'] = false;
+		$model['valid'] = true;
 		$model['to'] = $_POST['to'];
 		$model['from'] = $_POST['from'];
 		$model['sub'] = $_POST['sub'];

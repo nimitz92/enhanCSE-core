@@ -16,8 +16,8 @@ class UtilUploadTransform implements TransformService {
 		$filename = ((isset($model['rename']) ? $model['rename'] : $model['filename']));
 		
 		if( $file['size'] > $maxsize ){
-			$model['error'] = true;
-			$model['errormsg'] = "File is larger than maximum allowed.";
+			$model['valid'] = false;
+			$model['msg'] = "File is larger than maximum allowed.";
 			return $model;
 		}
 
@@ -25,22 +25,22 @@ class UtilUploadTransform implements TransformService {
 			case UPLOAD_ERR_OK: 
 				break;
 			case UPLOAD_ERR_INI_SIZE: 
-				$model['error'] = true;
-				$model['errormsg'] = "File is larger than maximum possible to be uploaded.";
+				$model['valid'] = false;
+				$model['msg'] = "File is larger than maximum possible to be uploaded.";
 				return $model;
 			default: 
-				$model['error'] = true;
-				$model['errormsg'] = "Internal error";
+				$model['valid'] = false;
+				$model['msg'] = "Internal error";
 				return $model;
 		}
 		
 		if( !move_uploaded_file($file['tmp_name'], ECROOT.$savepath.$filename) ){
-			$model['error'] = true;
-			$model['errormsg'] = "Internal unexpected error";
+			$model['valid'] = false;
+			$model['msg'] = "Internal unexpected error";
 			return $model;
 		}
 		
-		$model['error'] = false;
+		$model['valid'] = true;
 		return $model;
 	}
 }
