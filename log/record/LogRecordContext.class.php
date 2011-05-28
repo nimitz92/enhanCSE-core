@@ -1,16 +1,17 @@
 <?php 
 require_once(SBINTERFACES);
+require_once(SBROOT. 'lib/util/Time.class.php');
 
-class PrivilegeGrantContext implements ContextService {
+class LogRecordContext implements ContextService {
 
 	// ContextService interface
 	public function getContext($model){
 		$conn = $model['conn'];
-		$guid = $model['guid'];
-		$type = $model['type']);
-
-		$query = "insert into previleges (type, uid) values ($type, $guid);";
-		$result = $conn->getResult($query);
+		$address = $conn->escape($model['address']);
+		$message = $conn->escape($model['message']);
+		
+		$ts = Time::getTime();
+		$result = $conn->getResult("insert into logs (message, address, time) values ('$message', '$address', $ts);", true);
 		
 		if($result === false){
 			$model['valid'] = false;

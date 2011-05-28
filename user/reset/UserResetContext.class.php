@@ -13,12 +13,13 @@ class UserResetContext implements ContextService {
 		$subject = $model['subject'];
 		$message = $model['message'];
 		
-		$newusername = Random::getString(8);
+		//$newusername = Random::getString(8);
 		$password = Random::getString(16);
-		$result = $conn->getResult("update users set username='$newusername', password=MD5('$newusername$password') where username='$username' and email='$email';", true);
+		$result = $conn->getResult("update users set password=MD5('$username$password') where username='$username' and email='$email';", true);
 		
 		if($result === false || $result != 1){
 			$model['valid'] = false;
+			$model['msg'] = 'Error in Database';
 			return $model;
 		}
 		

@@ -9,7 +9,6 @@ class PrivilegeCheckContext implements ContextService {
 		$uid = $model['uid'];
 		$type = $model['type']);
 
-		// check if the username and password match
 		$query = "select uid from previleges where uid=$uid and type=$type;";
 		$result = $conn->getResult($query);
 		

@@ -9,7 +9,6 @@ class PrivilegeRevokeContext implements ContextService {
 		$ruid = $model['ruid'];
 		$type = $model['type']);
 
-		// check if the username and password match
 		$query = "delete from previleges where type=$type and uid=$ruid;";
 		$result = $conn->getResult($query);
 		
