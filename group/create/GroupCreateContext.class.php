@@ -1,9 +1,23 @@
 <?php 
 require_once(SBINTERFACES);
 
+/**
+ *	GroupCreateContext class
+ *
+ *	@param gname		string			Group name
+ *	@param level		integer			Level or height in the tree
+ *	@param conn 		resource 		Database connection
+ *	
+ *	@param gid 			long int			Group ID generated
+ *	@return valid 		boolean		Processed without errors
+ *	@return msg			string			Error message if any
+ *
+**/
 class GroupCreateContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
 		$gname = $conn->escape($model['gname']);
@@ -39,7 +53,9 @@ class GroupCreateContext implements ContextService {
 		return $model;
 	}
 	
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function setContext($context){
 		
 	}

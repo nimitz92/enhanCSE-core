@@ -1,9 +1,22 @@
 <?php 
 require_once(SBINTERFACES);
 
+/**
+ *	GroupMembersContext class
+ *
+ *	@param gid				long int 		Group ID
+ *	@param conn 			resource 		Database connection
+ *	
+ *	@param members		array			Members information
+ *	@return valid 			boolean		Processed without errors
+ *	@return msg				string			Error message if any
+ *
+**/
 class GroupMembersContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface TransformService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
 		$gid = $model['gid'];
@@ -38,9 +51,11 @@ class GroupMembersContext implements ContextService {
 		return $model;
 	}
 	
-	// ContextService interface
-	public function setContext($context){
-		
+	/**
+	 *	@interface TransformService
+	**/
+	public function setContext($model){
+		return $model;
 	}
 }
 

@@ -1,9 +1,21 @@
 <?php 
 require_once(SBINTERFACES);
 
+/**
+ *	UserDeleteContext class
+ *
+ *	@param uid 				long int			User ID generated
+ *	@param conn 			resource 		Database connection
+ *
+ *	@return valid 			boolean		Processed without errors
+ *	@return msg				string			Error message if any
+ *
+**/
 class UserDeleteContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
 		$uid = $model['uid'];
@@ -13,7 +25,7 @@ class UserDeleteContext implements ContextService {
 		
 		if($result === false){
 			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
+			$model['msg'] = 'Error in Database @getContext/user.delete';
 			return $model;
 		}
 		
@@ -21,9 +33,11 @@ class UserDeleteContext implements ContextService {
 		return $model;
 	}
 	
-	// ContextService interface
-	public function setContext($context){
-		
+	/**
+	 *	@interface ContextService
+	**/
+	public function setContext($model){
+		return $model;
 	}
 }
 

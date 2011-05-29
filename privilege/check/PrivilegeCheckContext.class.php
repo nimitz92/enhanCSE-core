@@ -7,9 +7,9 @@ class PrivilegeCheckContext implements ContextService {
 	public function getContext($model){
 		$conn = $model['conn'];
 		$uid = $model['uid'];
-		$type = $model['type']);
+		$type = $model['privtype']);
 
-		$query = "select uid from previleges where uid=$uid and type=$type;";
+		$query = "select uid from privileges where uid=$uid and type=$type;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){

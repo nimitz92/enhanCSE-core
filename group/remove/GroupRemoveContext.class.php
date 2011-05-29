@@ -1,9 +1,22 @@
 <?php 
 require_once(SBINTERFACES);
 
+/**
+ *	GroupRemoveContext class
+ *
+ *	@param gid				long int			Group ID
+ *	@param member		long int 		Member ID
+ *	@param conn 			resource 		Database connection
+ *	
+ *	@return valid 			boolean		Processed without errors
+ *	@return msg				string			Error message if any
+ *
+**/
 class GroupRemoveContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
 		$gid = $model['gid'];
@@ -13,7 +26,7 @@ class GroupRemoveContext implements ContextService {
 		
 		if($result === false){
 			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
+			$model['msg'] = 'Error in Database @getContext/group.remove';
 			return $model;
 		}
 		
@@ -21,9 +34,11 @@ class GroupRemoveContext implements ContextService {
 		return $model;
 	}
 	
-	// ContextService interface
-	public function setContext($context){
-		
+	/**
+	 *	@interface ContextService
+	**/
+	public function setContext($model){
+		return $model;
 	}
 }
 

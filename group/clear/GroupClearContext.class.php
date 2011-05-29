@@ -2,9 +2,8 @@
 require_once(SBINTERFACES);
 
 /**
- *	GroupAddContext class
+ *	GroupClearContext class
  *
- *	@param gid				long int			Group ID
  *	@param member		long int 		Member ID
  *	@param conn 			resource 		Database connection
  *	
@@ -12,21 +11,20 @@ require_once(SBINTERFACES);
  *	@return msg				string			Error message if any
  *
 **/
-class GroupAddContext implements ContextService {
+class GroupClearContext implements ContextService {
 
 	/**
 	 *	@interface ContextService
 	**/
 	public function getContext($model){
 		$conn = $model['conn'];
-		$gid = $model['gid'];
 		$member = $model['member'];
-			
-		$result = $conn->getResult("insert into members (gid, member) values ($gid, $member);", true);
+		
+		$result = $conn->getResult("delete from members where member=$member", true);
 		
 		if($result === false){
 			$model['valid'] = false;
-			$model['msg'] = 'Error in Database @getContext/group.add';
+			$model['msg'] = 'Error in Database @getContext/group.clear';
 			return $model;
 		}
 		

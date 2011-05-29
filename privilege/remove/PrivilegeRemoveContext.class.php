@@ -2,27 +2,25 @@
 require_once(SBINTERFACES);
 
 /**
- *	PrivilegeRevokeContext class
+ *	PrivilegeRemoveContext class
  *
- *	@param conn 		Database connection
- *	@param ruid			User ID to revoke privilege
- *	@param type			Privilege type to revoke
+ *	@param conn 		resource 		Database connection
+ *	@param privtype	long int			Privilege type
  *	
- *	@return valid 		Processed without errors
- *	@return msg			Error message if any
+ *	@return valid 		boolean		Processed without errors
+ *	@return msg			string			Error message if any
  *
 **/
-class PrivilegeRevokeContext implements ContextService {
+class PrivilegeRemoveContext implements ContextService {
 
 	/**
 	 *	@interface ContextService
 	**/
 	public function getContext($model){
 		$conn = $model['conn'];
-		$ruid = $model['ruid'];
-		$type = $model['privtype']);
+		$type = $model['privtype'];
 
-		$query = "delete from privileges where type=$type and uid=$ruid;";
+		$query = "delete from privileges where type=$type;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){

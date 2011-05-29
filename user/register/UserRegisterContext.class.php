@@ -3,9 +3,26 @@ require_once(SBINTERFACES);
 require_once(SBROOT. 'lib/util/Random.class.php');
 require_once(SBROOT. 'lib/util/Mail.class.php');
 
+/**
+ *	UserRegisterContext class
+ *
+ *	@param username		string			Username
+ *	@param email			string			Email
+ *	@param subject			string			Subject
+ *	@param message		string			Message
+ *	@param conn 			resource 		Database connection
+ *	
+ *	@return uid 				long int			User ID generated
+ *	@return password		string			Password generated
+ *	@return valid 			boolean		Processed without errors
+ *	@return msg				string			Error message if any
+ *
+**/
 class UserRegisterContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
 		$username = $conn->escape($model['username']);
@@ -18,7 +35,7 @@ class UserRegisterContext implements ContextService {
 		
 		if($result === false){
 			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
+			$model['msg'] = 'Error in Database @getContext/user.register';
 			return $model;
 		}
 			
@@ -45,18 +62,21 @@ class UserRegisterContext implements ContextService {
 		
 		if($sent === false){
 			$model['valid'] = false;
-			$model['msg'] = 'Error in Sending Mail';
+			$model['msg'] = 'Error in Sending Mail @getContext/user.register';
 			return $model;
 		}
 		
 		$model['valid'] = true;
 		$model['uid'] = $uid;
+		$model['password'] = $password;
 		return $model;
 	}
 	
-	// ContextService interface
-	public function setContext($context){
-		
+	/**
+	 *	@interface ContextService
+	**/
+	public function setContext($model){
+		return $model;
 	}
 }
 

@@ -2,41 +2,33 @@
 require_once(SBINTERFACES);
 
 /**
- *	GroupDeleteContext class
+ *	PrivilegeNewContext class
  *
- *	@param gid			long int			Group ID
  *	@param conn 		resource 		Database connection
  *	
+ *	@return privtype 	long int 		New privilege type
  *	@return valid 		boolean		Processed without errors
  *	@return msg			string			Error message if any
  *
 **/
-class GroupDeleteContext implements ContextService {
+class PrivilegeNewContext implements ContextService {
 
 	/**
 	 *	@interface ContextService
 	**/
 	public function getContext($model){
 		$conn = $model['conn'];
-		$gid = $model['gid'];
-		
-		$query = "delete from groups where gid=$gid;";
+
+		$query = "select max(type) from privileges;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
 			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
+			$model['msg'] = 'Error in Database @getContext/privilege.new';
 			return $model;
 		}
 		
-		$result = $conn->getResult("delete from members where gid=$gid;", true);
-		
-		if($result === false){
-			$model['valid'] = false;
-			$model['msg'] = 'Error in Database';
-			return $model;
-		}
-		
+		$model['privtype'] = $result[0][0] + 1;
 		$model['valid'] = true;
 		return $model;
 	}
@@ -44,7 +36,7 @@ class GroupDeleteContext implements ContextService {
 	/**
 	 *	@interface ContextService
 	**/
-	public function setContext($context){
+	public function setContext($model){
 		return $model;
 	}
 }

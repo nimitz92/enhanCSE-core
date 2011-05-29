@@ -1,15 +1,28 @@
 <?php 
 require_once(SBINTERFACES);
 
+/**
+ *	PrivilegeGrantContext class
+ *
+ *	@param conn 	resource		Database connection
+ *	@param guid		long int			User ID to grant privilege
+ *	@param type		long int			Privilege type to grant
+ *	
+ *	@return valid 	boolean		Processed without errors
+ *	@return msg		string			Error message if any
+ *
+**/
 class PrivilegeGrantContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
 		$guid = $model['guid'];
-		$type = $model['type']);
+		$type = $model['privtype']);
 
-		$query = "insert into previleges (type, uid) values ($type, $guid);";
+		$query = "insert into privileges (type, uid) values ($type, $guid);";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
@@ -22,7 +35,9 @@ class PrivilegeGrantContext implements ContextService {
 		return $model;
 	}
 	
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function setContext($context){
 		
 	}
