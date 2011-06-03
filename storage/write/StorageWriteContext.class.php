@@ -24,7 +24,7 @@ class StorageWriteContext implements ContextService {
 		$stgid = $conn->escape($model['stgid']);
 		$uid = $model['uid'];
 		
-		$query = "select stgid, stgname, filename, mime, owner, access, group, ctime, atime, mtime from storages where stgid='$stgid' and (access>1 or (access=0 and owner=$uid))";
+		$query = "select s.stgid, s.stgname, s.filename, s.mime, s.owner, s.access, s.group, s.ctime, s.atime, s.mtime, s.dirid from storages s where s.stgid='$stgid' and (s.owner=$uid or s.access=4 or (s.access=2 and s.group in (select m.gid from members m where m.member=$uid)))";
 		$result = $conn->getResult($query);
 		
 		if($result === false){

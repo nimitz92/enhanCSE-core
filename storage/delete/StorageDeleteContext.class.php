@@ -8,6 +8,7 @@ require_once(SBINTERFACES);
  *	@param uid					long int			User ID
  *	@param conn 				resource 		Database connection
  *
+ *	@return storage			array			Storage information deleted
  *	@return valid 				boolean		Processed without errors
  *	@return msg					string			Error message if any
  *
@@ -22,7 +23,7 @@ class StorageDeleteContext implements ContextService {
 		$stgid = $conn->escape($model['stgid']);
 		$uid = $model['uid'];
 		
-		$query = "select stgid, stgname, filename, mime, owner, access, group, ctime, atime, mtime from storages where stgid='$stgid' and owner=$uid";
+		$query = "select stgid, stgname, filename, mime, owner, access, group, ctime, atime, mtime, dirid from storages where stgid='$stgid' and owner=$uid";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
