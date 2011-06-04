@@ -9,7 +9,18 @@
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
+--
+-- Table structure for table `collations`
+--
 
+CREATE TABLE IF NOT EXISTS `collations` (
+  `pgid` bigint(20) NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `cntid` bigint(20) NOT NULL,
+  PRIMARY KEY (`pgid`,`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 --
 -- Table structure for table `contents`
 --
