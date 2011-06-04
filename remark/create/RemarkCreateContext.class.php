@@ -1,12 +1,27 @@
 <?php 
 require_once(SBINTERFACES);
 
+/**
+ *	RemarkCreateContext class
+ *
+ *	@param uid					long int			User ID
+ *	@param comment			string			Comment
+ *	@param rating				integer			Rating
+ *	@param conn 				resource 		Database connection
+ *	
+ *	@return rkid 		 		long int 		Remark ID generated
+ *	@return valid 				boolean		Processed without errors
+ *	@return msg					string			Error message if any
+ *
+**/
 class RemarkCreateContext implements ContextService {
 
-	// ContextService interface
+	/**
+	 *	@interface ContextService
+	**/
 	public function getContext($model){
 		$conn = $model['conn'];
-		$uid = $model['uid']
+		$uid = $model['uid'];
 		$comment = $conn->escape($model['comment']);
 		$rating = $model['rating'];
 		
@@ -25,9 +40,11 @@ class RemarkCreateContext implements ContextService {
 		return $model;
 	}
 	
-	// ContextService interface
-	public function setContext($context){
-		
+	/**
+	 *	@interface ContextService
+	**/
+	public function setContext($model){
+		return $model;
 	}
 }
 
