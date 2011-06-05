@@ -8,7 +8,7 @@ require_once(SBINTERFACES);
  *	@param conn 				resource 		Database connection
  *	
  *	@return owner				long int			Owner User ID
- *	@return template			string			Template
+ *	@return tplname			string			Template Name
  *	@return style				string			Style sheet
  *	@return valid 				boolean		Processed without errors
  *	@return msg					string			Error message if any
@@ -23,7 +23,7 @@ class PageGetContext implements ContextService {
 		$conn = $model['conn'];
 		$pgid = $model['pgid'];
 		
-		$result = $conn->getResult("select owner, style, template from pages where pgid=$pgid;", true);
+		$result = $conn->getResult("select p.owner, p.style, p.tplid, t.tplname from pages p, templates t where pgid=$pgid and p.tplid=t.tplid;", true);
 		
 		if($result === false){
 			$model['valid'] = false;
@@ -40,7 +40,8 @@ class PageGetContext implements ContextService {
 		$model['valid'] = true;
 		$model['owner'] = $result[0][0];
 		$model['style'] = $result[0][1];
-		$model['template'] = $result[0][2];
+		$model['tplid'] = $result[0][2]
+		$model['tplname'] = $result[0][3];
 		return $model;
 	}
 	

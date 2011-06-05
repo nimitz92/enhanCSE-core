@@ -6,7 +6,7 @@ require_once(SBINTERFACES);
  *
  *	@param pgid 		 		long int			Page ID
  *	@param owner				long int			Owner ID
- *	@param template			string			Template
+ *	@param tplid					long int			Template ID
  *	@param style					string			Style sheet
  *	@param conn 				resource 		Database connection
  *	
@@ -24,9 +24,9 @@ class PageEditContext implements ContextService {
 		$pgid = $model['pgid'];
 		$owner = $model['owner'];
 		
-		if(isset($model['template'])){
-			$template = $conn->escape($model['template']);
-			$result = $conn->getResult("update pages set template='$template' where pgid=$pgid and owner=$owner;", true);
+		if(isset($model['tplid'])){
+			$tplid = $model['tplid'];
+			$result = $conn->getResult("update pages set tplid=$tplid where pgid=$pgid and owner=$owner;", true);
 		
 			if($result === false){
 				$model['valid'] = false;

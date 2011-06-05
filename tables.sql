@@ -3,12 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2011 at 03:56 PM
+-- Generation Time: Jun 05, 2011 at 03:42 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `iitbhucse`
+--
+
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `collations`
 --
@@ -21,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `collations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `contents`
 --
@@ -31,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `styleclass` varchar(255) NOT NULL,
   `content` longtext NOT NULL,
   PRIMARY KEY (`cntid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -44,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `gname` varchar(255) NOT NULL,
   `level` int(11) NOT NULL,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -58,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `address` varchar(255) DEFAULT NULL,
   `time` bigint(20) NOT NULL,
   PRIMARY KEY (`lid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -83,9 +90,9 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `pgid` bigint(20) NOT NULL AUTO_INCREMENT,
   `owner` bigint(20) NOT NULL,
   `style` longtext NOT NULL,
-  `template` longtext NOT NULL,
+  `tplid` bigint(20) NOT NULL,
   PRIMARY KEY (`pgid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -111,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `remarks` (
   `comment` text NOT NULL,
   `rating` int(11) NOT NULL,
   PRIMARY KEY (`rkid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -152,6 +159,19 @@ CREATE TABLE IF NOT EXISTS `storages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `templates`
+--
+
+CREATE TABLE IF NOT EXISTS `templates` (
+  `tplid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tplname` varchar(255) NOT NULL,
+  `template` longtext NOT NULL,
+  PRIMARY KEY (`tplid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -161,4 +181,4 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
