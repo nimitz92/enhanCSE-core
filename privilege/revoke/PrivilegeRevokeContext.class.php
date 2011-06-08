@@ -22,7 +22,7 @@ class PrivilegeRevokeContext implements ContextService {
 		$ruid = $model['ruid'];
 		$type = $model['privtype']);
 
-		$query = "delete from privileges where type=$type and uid=$ruid;";
+		$query = "delete from privileges where type='$type' and uid=$ruid;";
 		$result = $conn->getResult($query);
 		
 		if($result === false){

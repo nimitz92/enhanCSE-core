@@ -5,7 +5,7 @@ require_once(SBINTERFACES);
  *	PrivilegeRemoveContext class
  *
  *	@param conn 		resource 		Database connection
- *	@param privtype	long int			Privilege type
+ *	@param privtype	string			Privilege type
  *	
  *	@return valid 		boolean		Processed without errors
  *	@return msg			string			Error message if any
@@ -20,7 +20,7 @@ class PrivilegeRemoveContext implements ContextService {
 		$conn = $model['conn'];
 		$type = $model['privtype'];
 
-		$query = "delete from privileges where type=$type;";
+		$query = "delete from privileges where type='$type';";
 		$result = $conn->getResult($query);
 		
 		if($result === false){

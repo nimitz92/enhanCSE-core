@@ -7,6 +7,7 @@ require_once(SBROOT. 'lib/util/Random.class.php');
  *	SessionCreateContext class
  *
  *	@param uid					long int			User ID
+ *	@param interval			long int			Interval time before expiry
  *	@param conn 				resource 		Database connection
  *	
  *	@return sessionid	 		string			Session ID generated
@@ -22,10 +23,11 @@ class SessionCreateContext implements ContextService {
 	public function getContext($model){
 		$conn = $model['conn'];
 		$uid = $model['uid'];
+		$interval = $model['interval'];
 
 		$sessionid = Random::getString(32); 
 		$ts = Time::getTime();
-		$ts_exp = $ts + 2592000; // 30 days
+		$ts_exp = $ts + $interval;
 		
 		$query = "delete from sessions where expiry < $ts;";
 		$conn->getResult($query, true);

@@ -4,9 +4,9 @@ require_once(SBINTERFACES);
 /**
  *	PrivilegeGrantContext class
  *
- *	@param conn 	resource		Database connection
  *	@param guid		long int			User ID to grant privilege
- *	@param type		long int			Privilege type to grant
+ *	@param type		string			Privilege type to grant
+ *	@param conn 	resource		Database connection
  *	
  *	@return valid 	boolean		Processed without errors
  *	@return msg		string			Error message if any
@@ -22,7 +22,7 @@ class PrivilegeGrantContext implements ContextService {
 		$guid = $model['guid'];
 		$type = $model['privtype']);
 
-		$query = "insert into privileges (type, uid) values ($type, $guid);";
+		$query = "insert into privileges (type, uid) values ('$type', $guid);";
 		$result = $conn->getResult($query);
 		
 		if($result === false){
