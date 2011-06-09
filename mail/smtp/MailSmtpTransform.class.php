@@ -1,7 +1,7 @@
 <?php 
 require_once(SBINTERFACES);
 
-class MailSmtpTranform implements TransformService {
+class MailSmtpTransform implements TransformService {
 
 	// TransformService interface
 	public function transform($model){
@@ -23,10 +23,10 @@ class MailSmtpTranform implements TransformService {
 			fputs($SMTPIN, "AUTH LOGIN\r\n");
 			$talk["auth login"]=fgets($SMTPIN,1024);
 				
-			fputs($SMTPIN, $smtpuser."\r\n");
+			fputs($SMTPIN, base64_encode($smtpuser)."\r\n");
 			$talk["user"]=fgets($SMTPIN,1024);
 					
-			fputs($SMTPIN, $smtppass."\r\n");
+			fputs($SMTPIN, base64_encode($smtppass)."\r\n");
 			$talk["pass"]=fgets($SMTPIN,256);
 							
 			fputs ($SMTPIN, "MAIL FROM: <$from>\r\n");  

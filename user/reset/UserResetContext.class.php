@@ -35,6 +35,7 @@ class UserResetContext implements ContextService {
 		}
 		
 		$model['valid'] = true;
+		$model['sent'] = $sent;
 		return $model;
 	}
 	
